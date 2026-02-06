@@ -1,0 +1,23 @@
+{
+  "id": "cpp-flow",
+  "name": "C++ Flow",
+  "runner": {
+    "command": "g++",
+    "args": ["-o", "out", "main.cpp", "&&", "./out"],
+    "cwd": "content/exercises"
+  },
+  "content": {
+    "root": ".",
+    "exercises": "content/exercises"
+  },
+  "setup": {
+    "checks": [
+      {
+        "name": "G++ Compiler",
+        "type": "command",
+        "command": "g++ --version"
+      }
+    ],
+    "guide": "SETUP.md"
+  }
+}

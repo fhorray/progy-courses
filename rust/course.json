@@ -1,0 +1,28 @@
+{
+  "id": "rust-flow",
+  "name": "Rust Flow",
+  "runner": {
+    "command": "cargo",
+    "args": ["run"],
+    "cwd": "."
+  },
+  "content": {
+    "root": ".",
+    "exercises": "content/exercises"
+  },
+  "setup": {
+    "checks": [
+      {
+        "name": "Rust Compiler",
+        "type": "command",
+        "command": "rustc --version"
+      },
+      {
+        "name": "Cargo Package Manager",
+        "type": "command",
+        "command": "cargo --version"
+      }
+    ],
+    "guide": "SETUP.md"
+  }
+}

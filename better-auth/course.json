@@ -1,0 +1,23 @@
+{
+  "id": "better-auth-mastery",
+  "name": "Better-Auth Mastery",
+  "runner": {
+    "command": "bun",
+    "args": ["run", "test"],
+    "cwd": "."
+  },
+  "content": {
+    "root": ".",
+    "exercises": "content/exercises"
+  },
+  "setup": {
+    "checks": [
+      {
+        "name": "Bun Runtime",
+        "type": "command",
+        "command": "bun --version"
+      }
+    ],
+    "guide": "SETUP.md"
+  }
+}

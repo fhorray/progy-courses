@@ -1,0 +1,23 @@
+{
+  "id": "go-flow",
+  "name": "Go Flow",
+  "runner": {
+    "command": "go",
+    "args": ["run", "."],
+    "cwd": "."
+  },
+  "content": {
+    "root": ".",
+    "exercises": "content/exercises"
+  },
+  "setup": {
+    "checks": [
+      {
+        "name": "Go Compiler",
+        "type": "command",
+        "command": "go version"
+      }
+    ],
+    "guide": "SETUP.md"
+  }
+}
