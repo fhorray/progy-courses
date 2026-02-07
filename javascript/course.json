@@ -3,7 +3,7 @@
   "name": "JavaScript Essentials",
   "runner": {
     "command": "node",
-    "args": ["../../runner/index.js", "test"],
+    "args": ["./runner/index.js", "test", "content/{{id}}"],
     "cwd": "."
   },
   "content": {
