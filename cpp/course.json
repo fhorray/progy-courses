@@ -8,7 +8,7 @@
   },
   "content": {
     "root": ".",
-    "exercises": "content/exercises"
+    "exercises": "content"
   },
   "setup": {
     "checks": [

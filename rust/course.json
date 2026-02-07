@@ -3,7 +3,7 @@
   "name": "Rust Flow",
   "runner": {
     "command": "cargo",
-    "args": ["run"],
+    "args": ["run", "-q", "-p", "runner", "--", "test", "content/{{id}}"],
     "cwd": "."
   },
   "content": {

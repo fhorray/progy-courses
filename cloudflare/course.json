@@ -1,9 +1,9 @@
 {
-  "id": "go-flow",
-  "name": "Go Flow",
+  "id": "cloudflare-workers",
+  "name": "Cloudflare Workers",
   "runner": {
-    "command": "go",
-    "args": ["run", "runner/main.go", "test", "content/{{id}}"],
+    "command": "bun",
+    "args": ["run", "test"],
     "cwd": "."
   },
   "content": {
@@ -13,9 +13,9 @@
   "setup": {
     "checks": [
       {
-        "name": "Go Compiler",
+        "name": "Bun",
         "type": "command",
-        "command": "go version"
+        "command": "bun --version"
       }
     ],
     "guide": "SETUP.md"

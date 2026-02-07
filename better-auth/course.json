@@ -3,12 +3,12 @@
   "name": "Better-Auth Mastery",
   "runner": {
     "command": "bun",
-    "args": ["run", "test"],
+    "args": ["run", "runner/index.ts", "test", "content/{{id}}"],
     "cwd": "."
   },
   "content": {
     "root": ".",
-    "exercises": "content/exercises"
+    "exercises": "content"
   },
   "setup": {
     "checks": [

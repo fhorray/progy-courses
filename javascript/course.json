@@ -1,9 +1,9 @@
 {
-  "id": "go-flow",
-  "name": "Go Flow",
+  "id": "js-essentials",
+  "name": "JavaScript Essentials",
   "runner": {
-    "command": "go",
-    "args": ["run", "runner/main.go", "test", "content/{{id}}"],
+    "command": "node",
+    "args": ["../../runner/index.js", "test"],
     "cwd": "."
   },
   "content": {
@@ -13,9 +13,9 @@
   "setup": {
     "checks": [
       {
-        "name": "Go Compiler",
+        "name": "Node.js",
         "type": "command",
-        "command": "go version"
+        "command": "node --version"
       }
     ],
     "guide": "SETUP.md"
