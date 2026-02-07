@@ -1,6 +1,11 @@
 [workspace]
 members = [
     "runner",
-    "content/01_intro/intro",
+    "content/01_variables_types/01_mutability",
+    "content/01_variables_types/02_scalar_types",
+    "content/02_control_flow/01_if_else",
+    "content/02_control_flow/02_loops",
+    "content/03_ownership/01_move",
+    "content/03_ownership/02_borrowing",
 ]
 resolver = "2"

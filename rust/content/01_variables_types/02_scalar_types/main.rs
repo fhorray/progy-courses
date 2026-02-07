@@ -1,3 +1,5 @@
+mod exercise;
+
 fn main() {
     let price = 9.99; // TODO: Explicitly annotate as f64
     let is_available = true; // TODO: Explicitly annotate as bool
