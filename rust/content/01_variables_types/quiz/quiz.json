@@ -1,0 +1,37 @@
+{
+  "title": "Variables & Types Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "Which keyword is used to make a variable mutable in Rust?",
+      "options": [
+        { "id": "a", "text": "var", "isCorrect": false },
+        { "id": "b", "text": "let", "isCorrect": false },
+        { 
+          "id": "c", 
+          "text": "mut", 
+          "isCorrect": true,
+          "explanation": "Correct! You use `let mut` to define a mutable variable."
+        },
+        { "id": "d", "text": "mutable", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Which type should be used for the value 3.14?",
+      "options": [
+        { "id": "a", "text": "i32", "isCorrect": false },
+        { "id": "b", "text": "u32", "isCorrect": false },
+        { "id": "c", "text": "bool", "isCorrect": false },
+        { 
+          "id": "d", 
+          "text": "f64", 
+          "isCorrect": true,
+          "explanation": "Correct! 3.14 is a floating-point number, and f64 is the default."
+        }
+      ]
+    }
+  ]
+}

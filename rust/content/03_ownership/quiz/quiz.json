@@ -1,0 +1,35 @@
+{
+  "title": "Ownership Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "What happens when you assign a String variable to another variable?",
+      "options": [
+        { "id": "a", "text": "It copies the data.", "isCorrect": false },
+        { 
+          "id": "b", 
+          "text": "It moves ownership.", 
+          "isCorrect": true,
+          "explanation": "Correct! Rust moves ownership to prevent double-free errors."
+        },
+        { "id": "c", "text": "It creates a reference.", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "How many mutable references to a variable can you have at once?",
+      "options": [
+        { "id": "a", "text": "As many as you want", "isCorrect": false },
+        { 
+          "id": "b", 
+          "text": "Exactly one", 
+          "isCorrect": true,
+          "explanation": "Correct! To prevent data races, you can only have one mutable reference at a time."
+        },
+        { "id": "c", "text": "Two", "isCorrect": false }
+      ]
+    }
+  ]
+}

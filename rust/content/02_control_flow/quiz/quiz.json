@@ -1,0 +1,35 @@
+{
+  "title": "Control Flow Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "What is the return type of an `if` expression that doesn't have an `else` block?",
+      "options": [
+        { "id": "a", "text": "bool", "isCorrect": false },
+        { 
+          "id": "b", 
+          "text": "() (Unit type)", 
+          "isCorrect": true, 
+          "explanation": "Correct! If there's no `else` block, the expression evaluates to `()`."
+        },
+        { "id": "c", "text": "i32", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Which loop is best suited for iterating over a collection?",
+      "options": [
+        { "id": "a", "text": "loop", "isCorrect": false },
+        { "id": "b", "text": "while", "isCorrect": false },
+        { 
+          "id": "c", 
+          "text": "for", 
+          "isCorrect": true,
+          "explanation": "Correct! `for` loops in Rust are designed to iterate over iterators."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Loops Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "How do you return a value from a `loop`?",
+      "options": [
+        { "id": "a", "text": "You can't.", "isCorrect": false },
+        { "id": "b", "text": "return value;", "isCorrect": false },
+        { 
+          "id": "c", 
+          "text": "break value;", 
+          "isCorrect": true,
+          "explanation": "Correct! You can place a value after `break` to return it from the loop expression."
+        }
+      ]
+    }
+  ]
+}

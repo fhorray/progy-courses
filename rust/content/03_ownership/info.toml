@@ -1,0 +1,7 @@
+[module]
+message = "Ownership"
+
+[exercises]
+01_move = "Move Semantics"
+02_borrowing = "Borrowing"
+quiz = "Quiz: Ownership"

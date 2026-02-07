@@ -1,101 +1,87 @@
-# Progy Runner Implementation Guide
+# Runners
 
-Runners are the core component that executes student code and provides feedback. Progy uses a **Single Responsibility Principle (SRP)** pattern where the runner is responsible for:
-1.  Running the exercise code.
-2.  Running tests/verifications.
-3.  Outputting a standardized JSON result.
+Runners are the core of Progy's interactive feedback system. A runner is a script or binary that executes the student's code, runs tests, and outputs the results in a specific JSON format.
 
-## SRP Protocol
+## How it Works
 
-The runner **MUST** output a JSON object wrapped in specific markers to stdout:
+1.  The CLI/Server calls the command specified in `course.json`.
+2.  It replaces placeholders like `{{id}}` with the path to the current exercise.
+3.   The runner executes the tests.
+4.  The runner prints the result JSON wrapped in `__SRP_BEGIN__` and `__SRP_END__`.
 
-```
-__SRP_BEGIN__
-{
-  "success": true,
-  "summary": "All tests passed!",
-  "diagnostics": [],
-  "tests": [
-    { "name": "Test 1", "status": "pass", "message": "..." }
-  ],
-  "raw": "..."
-}
-__SRP_END__
-```
+## Protocol (SRPOutput)
 
-### JSON Structure
+The runner must output JSON matching this structure:
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| `success` | `boolean` | `true` if the exercise is solved, `false` otherwise. |
-| `summary` | `string` | A brief summary of the result (e.g., "Compilation Failed", "2/3 Tests Passed"). |
-| `diagnostics` | `array` | List of compiler/linter errors. |
-| `tests` | `array` | List of individual test results. |
-| `raw` | `string` | The raw stdout/stderr from the underlying tools (useful for debugging). |
-
-#### Diagnostic Object
-```json
-{
-  "severity": "error", // or "warning"
-  "message": "Syntax error: unexpected token",
-  "file": "main.rs", // optional
-  "line": 10,        // optional
-  "snippet": "..."   // optional code snippet
+```typescript
+type SRPOutput = {
+  success: boolean;       // Overall pass/fail status
+  summary: string;        // Short summary message
+  diagnostics?: Array<{   // Optional compiler/linter errors
+    severity: "error" | "warning";
+    message: string;
+    file?: string;
+    line?: number;
+  }>;
+  tests?: Array<{         // Individual test results
+    name: string;
+    status: "pass" | "fail";
+    message?: string;
+  }>;
+  raw: string;           // Raw stdout/stderr for debugging
 }
 ```
-
-#### Test Object
-```json
-{
-  "name": "Check function add",
-  "status": "pass", // "pass" or "fail"
-  "message": "Expected 4, got 5" // optional details
-}
-```
-
-## How to Create a Runner
-
-1.  **Choose a Language**: The runner can be written in any language (Node, Rust, Python, Go, etc.). It just needs to run as a CLI command.
-2.  **Parse Arguments**: The runner will typically be called by Progy with a `test` command and the path to the exercise.
-    *   Example: `my-runner test content/01_intro/hello`
-3.  **Execute Logic**:
-    *   Compile the student's code (if necessary).
-    *   Run unit tests (e.g., `cargo test --json`, `go test -json`, `jest --json`).
-    *   Capture `stdout` and `stderr`.
-4.  **Parse & Transform**:
-    *   Parse the tool's output (JSON or text).
-    *   Map it to the `SRPOutput` structure.
-5.  **Print Output**:
-    *   Print `__SRP_BEGIN__`.
-    *   Print the JSON string.
-    *   Print `__SRP_END__`.
 
 ## Example: Node.js Runner
 
 ```javascript
-// runner.js
+// runner/index.js
 const { spawn } = require("child_process");
+const { resolve, join } = require("path");
 
-console.log("__SRP_BEGIN__");
-// ... logic to run tests ...
-console.log(JSON.stringify({
-    success: true,
-    summary: "It works!",
-    diagnostics: [],
-    tests: [],
-    raw: "..."
-}));
-console.log("__SRP_END__");
+const targetDir = resolve(process.argv[2]); // Passed from CLI
+const mainFile = join(targetDir, "index.js");
+
+const srp = {
+    success: false,
+    summary: "",
+    raw: ""
+};
+
+const proc = spawn("node", [mainFile], { cwd: targetDir });
+
+let output = "";
+proc.stdout.on("data", d => output += d);
+proc.stderr.on("data", d => output += d);
+
+proc.on("close", (code) => {
+    srp.success = code === 0;
+    srp.raw = output;
+    srp.summary = srp.success ? "Execution Successful" : "Execution Failed";
+
+    console.log("__SRP_BEGIN__");
+    console.log("__SRP_BEGIN__");
+    console.log(JSON.stringify(srp, null, 2));
+    console.log("__SRP_END__");
+});
 ```
 
-## Integration
+## High-Performance Rust Runner
 
-In your `course.json`, configure the `runner` to execute your script:
+Progy also includes a runner written in Rust (`apps/progy/runner/src/main.rs`) for maximum performance.
+- It invokes `cargo test --message-format json`.
+- It parses the stream of Cargo JSON events.
+- It transforms them into the SRP format.
+- This creates a bridge between raw compiler output and Progy's friendly UI.
+
+## Configuration
+
+In `course.json`:
 
 ```json
 "runner": {
   "command": "node",
-  "args": ["runner/index.js", "test", "content/{{id}}"],
+  "args": ["./runner/index.js", "test", "content/{{id}}"],
   "cwd": "."
 }
 ```

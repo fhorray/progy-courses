@@ -1,0 +1,7 @@
+[module]
+message = "Control Flow"
+
+[exercises]
+01_if_else = "If/Else Expressions"
+02_loops = "Loops"
+quiz = "Quiz: Control Flow"

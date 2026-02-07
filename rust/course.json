@@ -1,6 +1,6 @@
 {
-  "id": "rust-flow",
-  "name": "Rust Flow",
+  "id": "rust-fundamentals",
+  "name": "Rust Fundamentals",
   "runner": {
     "command": "cargo",
     "args": ["run", "-q", "-p", "runner", "--", "test", "content/{{id}}"],

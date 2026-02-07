@@ -1,0 +1,20 @@
+{
+  "title": "Borrowing Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "What happens if a reference points to invalid data?",
+      "options": [
+        { "id": "a", "text": "Runtime error", "isCorrect": false },
+        { 
+          "id": "b", 
+          "text": "Compile-time error", 
+          "isCorrect": true,
+          "explanation": "Correct! The borrow checker ensures all references are always valid."
+        },
+        { "id": "c", "text": "It returns null", "isCorrect": false }
+      ]
+    }
+  ]
+}

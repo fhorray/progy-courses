@@ -1,0 +1,7 @@
+[module]
+message = "Variables and Types"
+
+[exercises]
+01_mutability = "Mutability"
+02_scalar_types = "Scalar Types"
+quiz = "Quiz: Variables & Types"
