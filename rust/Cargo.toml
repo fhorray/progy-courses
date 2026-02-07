@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "runner",
+    "content/01_intro/intro",
+]
+resolver = "2"
