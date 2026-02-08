@@ -5,4 +5,4 @@ edition = "2021"
 
 [[bin]]
 name = "loops"
-path = "main.rs"
+path = "exercise.rs"

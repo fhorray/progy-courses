@@ -5,4 +5,4 @@ edition = "2021"
 
 [[bin]]
 name = "move_semantics"
-path = "main.rs"
+path = "exercise.rs"
